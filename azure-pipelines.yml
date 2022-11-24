@@ -13,10 +13,10 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  version: $(date -Format yyyy-MM-dd-hh-mm)
+  version: $(DayOfMonth).$(Month).$(Year:yyyy)
 
 steps:
-- script: echo $(date -Format yyyyMMddhhmmss)
+- script: echo $(DayOfMonth).$(Month).$(Year:yyyy)
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
