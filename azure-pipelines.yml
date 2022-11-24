@@ -19,7 +19,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '7.0.100'
-    
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -29,7 +29,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:OutDir="$(Build.ArtifactStagingDirectory)"'
+    msbuildArgs: '/p:OutDir="$(Build.ArtifactStagingDirectory)" /p:PackageAsSingleFile=true'
     # msbuildArgs: '/p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
     # msbuildArgs: '/p:OutputDirectory=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
