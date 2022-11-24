@@ -13,7 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  version: $(date -Format yyyyMMddhhmmss)
+  version: $(date -Format yyyy-MM-dd-hh-mm)
 
 steps:
 - script: echo $(date -Format yyyyMMddhhmmss)
