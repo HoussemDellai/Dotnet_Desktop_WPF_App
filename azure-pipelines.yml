@@ -13,10 +13,9 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  version: $(DayOfMonth).$(Month).$(Year:yyyy)
 
 steps:
-- script: echo $(DayOfMonth).$(Month).$(Year:yyyy)
+
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -31,9 +30,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:OutDir="$(Build.ArtifactStagingDirectory)" /p:PackageAsSingleFile=true'
-    # msbuildArgs: '/p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
-    # msbuildArgs: '/p:OutputDirectory=$(Build.ArtifactStagingDirectory)'
+    msbuildArgs: '/p:OutDir=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -42,8 +39,7 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(version).zip'
-    replaceExistingArchive: true"
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
 
 - task: VSTest@2
   inputs:
@@ -64,5 +60,5 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     artifactName: drop
