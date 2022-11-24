@@ -40,7 +40,7 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Date:yyyyMMdd)$(Rev:.r).zip'
     replaceExistingArchive: true"
 
 - task: VSTest@2
