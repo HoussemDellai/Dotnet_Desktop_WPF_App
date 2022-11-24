@@ -15,7 +15,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: echo $(Date:yyyy-MM-dd)-$(Rev:.r)
+- script: echo $(date -Format yyyyMMddhhmmss)
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
