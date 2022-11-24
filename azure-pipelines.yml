@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  version: $(date -Format yyyyMMddhhmmss)
 
 steps:
 - script: echo $(date -Format yyyyMMddhhmmss)
@@ -41,7 +42,7 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Date:yyyy-MM-dd)-$(Rev:.r).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(version).zip'
     replaceExistingArchive: true"
 
 - task: VSTest@2
