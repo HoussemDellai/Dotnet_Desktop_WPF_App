@@ -15,6 +15,7 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: echo $(Date:yyyy-MM-dd)-$(Rev:.r)
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
@@ -40,7 +41,7 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Date:yyyyMMdd)$(Rev:.r).zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Date:yyyy-MM-dd)-$(Rev:.r).zip'
     replaceExistingArchive: true"
 
 - task: VSTest@2
