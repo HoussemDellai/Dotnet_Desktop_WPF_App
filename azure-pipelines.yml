@@ -24,7 +24,8 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
+    msbuildArgs: '/p:OutDir="$(Build.ArtifactStagingDirectory)"'
+    # msbuildArgs: '/p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
     # msbuildArgs: '/p:OutputDirectory=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
